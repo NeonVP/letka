@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-const float EPS = 0.00000001f;
+const float EPS = 1e-9f;
 
 int main(void) {
     float a, b, c, d;
@@ -15,7 +15,7 @@ int main(void) {
         return 0;
     }
 
-    if (d <= EPS) {
+    if (abs(d) <= EPS) {
         float x = -(b / 2 / a);
         printf("Уравнение имеет 1 корень: %f\n", x);
         return 0;
@@ -27,5 +27,6 @@ int main(void) {
 
     printf("Корни уравнения %f и %f\n", x1, x2);
     return 0;
+
 
 }
