@@ -33,10 +33,15 @@ int main(void) {
         printf("There are two solutions: %f and %f\n", x1, x2);
         return 0;
     } 
-    else 
+    else if (b != 0)
     {
         printf("This is not a quadratic equation, but a linear one.\n");
         printf("There are one solution: %f", (-c)/b);
+        return 0;
+    }
+    else
+    {
+        printf("There is It's not an equation.\nThere are no solutions");
         return 0;
     }
 }
