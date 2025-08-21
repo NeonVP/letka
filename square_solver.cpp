@@ -39,6 +39,11 @@ int main(void) {
         printf("There are one solution: %f", (-c)/b);
         return 0;
     }
+    else if (c != 0)
+    {
+        printf("The equation has an infinite number of roots");
+        return 0;
+    }
     else
     {
         printf("There is It's not an equation.\nThere are no solutions");
