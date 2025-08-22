@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
+const float EPS = 1e-17f;
+
 int main(void) {
     float a = 0;
     float b = 0;
@@ -10,9 +12,9 @@ int main(void) {
     printf("Enter the coefficients of the quadratic equation: ");
     scanf("%f %f %f", &a, &b, &c);
 
-    if (a == 0) 
+    if (abs(a) < EPS) 
     {
-        if (b != 0)
+        if (abs(b) > EPS)
         {
             printf("This is not a quadratic equation, but a linear one.\n");
             printf("There are one solution: %f", (-c)/b);
@@ -26,30 +28,33 @@ int main(void) {
     }
     else
     {
-        if (b != 0)
+        if (abs(b) > EPS)
         {
-            if (c == 0)
+            if (abs(c) < EPS)
             {
                 printf("There are two solutions: 0 and %f", -b/a);
                 return 0;
             }
-            d = b*b - 4*a*c;
-            if (d < 0)
-            {
-                printf("There are no solutions.\n");
-                return 0;
-            }
-            else if (d == 0)
-            {
-                printf("There are one solution: %f", -(b/2/a));
-                return 0;
-            }
             else
             {
-                float x1 = (-b + sqrt(d)) / 2 / a;
-                float x2 = (-b - sqrt(d)) / 2 / a;
-                printf("There are two solutions: %f and %f", x1, x2);
-                return 0;
+                d = b*b - 4*a*c;
+                if (d < 0)
+                {
+                    printf("There are no solutions.\n");
+                    return 0;
+                }
+                else if (abs(d) < 0)
+                {
+                    printf("There are one solution: %f", -(b/2/a));
+                    return 0;
+                }
+                else
+                {
+                    float x1 = (-b + sqrt(d)) / 2 / a;
+                    float x2 = (-b - sqrt(d)) / 2 / a;
+                    printf("There are two solutions: %f and %f", x1, x2);
+                    return 0;
+                }
             }
         }
         else
